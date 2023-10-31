@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{parent()}}Liste des Types de cafés
+{% endblock %}
+{% block body %}
+	<div class="container-fluid">
+		<h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">
+			Liste des types de cafés</h1>
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-8 bg-white p-4 m-0 text-primary">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr class="fw-bold text-primary">
+								<th scope="col">id</th>
+								<th scope="col">designation</th>
+								<th scope="col">origine</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for typecafe in typecafes | sort((a, b) => a.designation <=> b.designation) %}
+								<tr class="{{ cycle(['table-primary', 'table-secondary'], loop.index0) }}">
+									<td>{{ typecafe.id  }}</td>
+									<td>{{ typecafe.designation  }}</td>
+									<td>{{ typecafe.origine }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
